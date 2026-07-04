@@ -1,0 +1,38 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+---
+<BaseLayout title="About" description="Watch Haikus — a reading room for watches from Vienna.">
+
+  <Header active="About" />
+
+  <div class="r-dateline" style="border-bottom:1px solid var(--rule);">
+    <span style="font-family:var(--fm);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);">About</span>
+  </div>
+
+  <div class="r-article-header" style="border-bottom:1px solid var(--rule);max-width:820px;margin:0 auto;">
+    <div class="r-label" style="margin-bottom:24px;color:var(--gd);">Watch Haikus</div>
+    <h1 style="font-family:var(--ff);font-size:56px;font-weight:400;font-style:italic;line-height:1.1;color:var(--ink);margin-bottom:24px;">A reading room<br>for watches.</h1>
+    <p style="font-family:var(--ff);font-size:20px;font-weight:300;font-style:italic;color:var(--mute);line-height:1.65;max-width:560px;">
+      Vienna. Opinions on watches, brands, and the machinery of desire around them.
+    </p>
+  </div>
+
+  <div class="r-article-back" style="max-width:820px;margin:0 auto;border-bottom:1px solid var(--rule);">
+    <a href="/" class="r-label" style="text-decoration:none;color:var(--g);">Back to The Bench</a>
+  </div>
+
+  <footer class="r-footer" style="background:var(--g);">
+    <a href="/" style="text-decoration:none;font-family:var(--ff);font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:var(--p);display:flex;align-items:center;gap:10px;">
+      <span style="display:inline-block;width:7px;height:7px;background:var(--gs);flex-shrink:0;"></span>
+      <span style="font-weight:300;">WATCH</span><span style="font-weight:500;color:var(--gs);">HAIKUS</span>
+    </a>
+    <span style="font-family:var(--ff);font-size:14px;font-style:italic;color:var(--gd);">Reading room for watches.</span>
+    <nav style="display:flex;gap:28px;flex-wrap:wrap;">
+      <a href="/essays" style="font-family:var(--fm);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--gd);text-decoration:none;">Essays</a>
+      <a href="/haikus" style="font-family:var(--fm);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--gd);text-decoration:none;">Haikus</a>
+      <a href="/about" style="font-family:var(--fm);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--gd);text-decoration:none;">About</a>
+    </nav>
+  </footer>
+
+</BaseLayout>
