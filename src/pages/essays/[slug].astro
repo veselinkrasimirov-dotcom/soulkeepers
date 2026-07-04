@@ -1,0 +1,60 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const essays = await getCollection('essays');
+  return essays.map(essay => ({
+    params: { slug: essay.slug },
+    props: { essay },
+  }));
+}
+
+const { essay } = Astro.props;
+const { Content } = await essay.render();
+---
+<BaseLayout title={essay.data.title} description={essay.data.subtitle}>
+
+  <Header active="Essays" />
+
+  <!-- Article header -->
+  <div style="padding:56px 64px 48px;border-bottom:.5px solid var(--rule);max-width:780px;margin:0 auto;">
+    <div style="font-family:var(--fm);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--warm);margin-bottom:20px;">
+      {essay.data.series} · {essay.data.readingTime}
+    </div>
+    <h1 style="font-family:var(--ff);font-size:40px;font-weight:400;line-height:1.25;color:var(--ink);margin-bottom:16px;">{essay.data.title}</h1>
+    {essay.data.subtitle && (
+      <p style="font-family:var(--ff);font-size:20px;font-style:italic;font-weight:300;color:var(--mute);line-height:1.6;">{essay.data.subtitle}</p>
+    )}
+  </div>
+
+  <!-- Article body -->
+  <article style="padding:48px 64px;max-width:780px;margin:0 auto;font-family:var(--ff);font-size:18px;line-height:1.8;color:var(--ink);">
+    <style>
+      article p { margin-bottom: 1.6em; }
+      article em { font-style: italic; }
+      article strong { font-weight: 500; }
+    </style>
+    <Content />
+  </article>
+
+  <!-- Back link -->
+  <div style="padding:0 64px 56px;border-bottom:.5px solid var(--rule);max-width:780px;margin:0 auto;">
+    <a href="/essays" style="font-family:var(--fm);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--g);text-decoration:none;border-bottom:.5px solid var(--g);padding-bottom:2px;">← All essays</a>
+  </div>
+
+  <footer style="padding:32px;display:flex;align-items:center;justify-content:space-between;border-top:2px solid var(--g);">
+    <div style="font-family:var(--ff);font-size:14px;letter-spacing:.1em;text-transform:uppercase;">
+      <span style="font-weight:300;">WATCH</span><span style="font-weight:500;color:var(--g);">HAIKUS</span>
+    </div>
+    <div style="font-family:var(--ff);font-size:14px;font-style:italic;color:var(--mute);">Reading room for watches.</div>
+    <div style="display:flex;gap:24px;">
+      <a href="/essays" style="font-family:var(--fm);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);text-decoration:none;">Essays</a>
+      <a href="/haikus" style="font-family:var(--fm);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);text-decoration:none;">Haikus</a>
+      <a href="/available" style="font-family:var(--fm);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);text-decoration:none;">Available</a>
+      <a href="/about" style="font-family:var(--fm);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);text-decoration:none;">About</a>
+    </div>
+  </footer>
+
+</BaseLayout>

@@ -1,0 +1,73 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const haikus = await getCollection('haikus');
+  return haikus.map(haiku => ({
+    params: { slug: haiku.slug },
+    props: { haiku },
+  }));
+}
+
+const { haiku } = Astro.props;
+const { Content } = await haiku.render();
+---
+<BaseLayout title={haiku.data.title ?? `Haiku ${haiku.data.number}`} description={`${haiku.data.brand}${haiku.data.watch ? ' · ' + haiku.data.watch : ''}`}>
+
+  <Header active="Haikus" />
+
+  <!-- Header -->
+  <div style="padding:56px 64px 48px;border-bottom:1px solid var(--rule);max-width:780px;margin:0 auto;">
+    <div style="font-family:var(--fm);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--g);margin-bottom:8px;font-weight:500;display:flex;align-items:center;gap:10px;">
+      <span style="display:inline-block;width:8px;height:8px;background:var(--g);"></span>
+      Haiku · {String(haiku.data.number).padStart(3,'0')}
+    </div>
+    <div style="font-family:var(--fm);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--warm);margin-bottom:20px;">
+      {haiku.data.brand}{haiku.data.watch ? ` · ${haiku.data.watch}` : ''}
+    </div>
+
+    {haiku.data.title ? (
+      <h1 style="font-family:var(--ff);font-size:40px;font-weight:400;line-height:1.25;color:var(--ink);">{haiku.data.title}</h1>
+    ) : (
+      <div style="font-family:var(--ff);font-size:40px;font-style:italic;font-weight:300;line-height:1.5;color:var(--ink);border-left:6px solid var(--g);padding-left:32px;">
+        {haiku.body.split('\n').filter((l: string) => l.trim()).map((line: string) => (
+          <>{line}<br /></>
+        ))}
+      </div>
+    )}
+  </div>
+
+  <!-- Body (prose haikus only) -->
+  {haiku.data.title && (
+    <article style="padding:48px 64px;max-width:780px;margin:0 auto;font-family:var(--ff);font-size:18px;line-height:1.8;color:var(--ink);">
+      <style>
+        article p { margin-bottom: 1.6em; }
+        article em { font-style: italic; }
+        article strong { font-weight: 500; }
+      </style>
+      <Content />
+    </article>
+  )}
+
+  <!-- Back + nav -->
+  <div style="padding:0 64px 56px;border-bottom:1px solid var(--rule);max-width:780px;margin:0 auto;">
+    <a href="/haikus" style="font-family:var(--fm);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--g);text-decoration:none;border-bottom:.5px solid var(--g);padding-bottom:2px;">← All haikus</a>
+  </div>
+
+  <footer style="padding:32px;display:flex;align-items:center;justify-content:space-between;background:var(--g);">
+    <div style="font-family:var(--ff);font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:var(--p);display:flex;align-items:center;gap:10px;">
+      <span style="display:inline-block;width:8px;height:8px;background:#A8C5A0;flex-shrink:0;"></span>
+      <span style="font-weight:300;">WATCH</span><span style="font-weight:500;color:#A8C5A0;">HAIKUS</span>
+    </div>
+    <div style="font-family:var(--ff);font-size:14px;font-style:italic;color:#6E9178;">Reading room for watches.</div>
+    <div style="display:flex;gap:24px;">
+      <a href="/essays" style="font-family:var(--fm);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#6E9178;text-decoration:none;">Essays</a>
+      <a href="/haikus" style="font-family:var(--fm);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#6E9178;text-decoration:none;">Haikus</a>
+      <a href="/available" style="font-family:var(--fm);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#6E9178;text-decoration:none;">Available</a>
+      <a href="/about" style="font-family:var(--fm);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#6E9178;text-decoration:none;">About</a>
+    </div>
+  </footer>
+
+</BaseLayout>

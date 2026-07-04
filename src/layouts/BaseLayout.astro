@@ -1,0 +1,45 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+}
+const { title = 'Watch Haikus', description = 'Reading room for watches.' } = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{title} — Watch Haikus</title>
+  <meta name="description" content={description}>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,ital,wght@9..144,0,300;9..144,0,400;9..144,0,500;9..144,1,300;9..144,1,400;9..144,1,500&family=Spline+Sans+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style is:global>
+    :root {
+      --p:    #F2F0EA;
+      --p2:   #E9E6DD;
+      --ink:  #23201A;
+      --rule: #D4CEC0;
+      --mute: #8A8373;
+      --g:    #2F4438;
+      --warm: #9C6B43;
+      --ff:   'Fraunces', Georgia, serif;
+      --fm:   'Spline Sans Mono', 'Courier New', monospace;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--p);
+      color: var(--ink);
+      font-family: var(--ff);
+      font-size: 18px;
+      line-height: 1.6;
+    }
+    a { color: inherit; }
+  </style>
+</head>
+<body>
+  <slot />
+</body>
+</html>

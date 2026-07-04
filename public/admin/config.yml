@@ -1,0 +1,57 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: public/images
+public_folder: /images
+
+collections:
+  - name: essays
+    label: Essays
+    folder: src/content/essays
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Subtitle, name: subtitle, widget: string, required: false }
+      - { label: Series, name: series, widget: string }
+      - { label: Series Number, name: seriesNumber, widget: number }
+      - { label: Date, name: date, widget: date, format: YYYY-MM-DD }
+      - { label: Reading Time, name: readingTime, widget: string, required: false }
+      - { label: Featured, name: featured, widget: boolean, default: false }
+      - { label: Cover Image, name: image, widget: image, required: false }
+      - { label: Image Alt Text, name: imageAlt, widget: string, required: false }
+      - { label: Body, name: body, widget: markdown }
+
+  - name: haikus
+    label: Haikus
+    folder: src/content/haikus
+    create: true
+    slug: "{{number}}-{{brand}}"
+    fields:
+      - { label: Number, name: number, widget: number }
+      - { label: Watch, name: watch, widget: string }
+      - { label: Brand, name: brand, widget: string }
+      - { label: Date, name: date, widget: date, format: YYYY-MM-DD }
+      - { label: Verse, name: body, widget: markdown }
+
+  - name: watches
+    label: Available Watches
+    folder: src/content/watches
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: Brand, name: brand, widget: string }
+      - { label: Model, name: model, widget: string }
+      - { label: Reference, name: reference, widget: string }
+      - { label: Spec Line, name: spec, widget: string }
+      - label: Status
+        name: status
+        widget: select
+        options: [available, sold]
+        default: available
+      - { label: Cover Image, name: image, widget: image, required: false }
+      - { label: Image Alt Text, name: imageAlt, widget: string, required: false }
+      - { label: Related Essay (slug), name: relatedEssay, widget: string, required: false }
+      - { label: Description, name: body, widget: markdown }
+      

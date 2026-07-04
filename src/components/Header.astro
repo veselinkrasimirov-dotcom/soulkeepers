@@ -1,0 +1,31 @@
+---
+interface Props {
+  active?: string;
+}
+const { active = '' } = Astro.props;
+
+const nav = [
+  { label: 'The Bench', href: '/' },
+  { label: 'Haikus', href: '/haikus' },
+  { label: 'Essays', href: '/essays' },
+  { label: 'Available', href: '/available' },
+  { label: 'About', href: '/about' },
+];
+---
+<header style="position:sticky;top:0;z-index:100;background:var(--p);border-top:5px solid var(--g);border-bottom:1px solid var(--g);padding:0 32px;display:flex;align-items:center;justify-content:space-between;height:54px;">
+  <a href="/" style="text-decoration:none;font-family:var(--ff);font-size:15px;letter-spacing:.1em;text-transform:uppercase;display:flex;align-items:center;gap:10px;">
+    <span style="display:inline-block;width:8px;height:8px;background:var(--g);flex-shrink:0;"></span>
+    <span style="font-weight:300;">WATCH</span><span style="font-weight:500;color:var(--g);">HAIKUS</span>
+  </a>
+  <nav>
+    <ul style="display:flex;list-style:none;">
+      {nav.map(item => (
+        <li>
+          <a href={item.href} style={`font-family:var(--fm);font-size:11px;text-transform:uppercase;letter-spacing:.07em;text-decoration:none;padding:0 12px;height:54px;display:flex;align-items:center;border-bottom:2px solid transparent;${active === item.label ? 'color:var(--g);border-bottom-color:var(--g);' : 'color:var(--mute);'}`}>
+            {item.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+</header>
