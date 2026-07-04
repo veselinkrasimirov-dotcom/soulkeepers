@@ -18,8 +18,7 @@ const { Content } = await essay.render();
 
   <Header active="Essays" />
 
-  <!-- Article header -->
-  <div style="padding:56px 64px 48px;border-bottom:.5px solid var(--rule);max-width:780px;margin:0 auto;">
+  <div class="r-article-header" style="padding:56px 64px 48px;border-bottom:.5px solid var(--rule);max-width:780px;margin:0 auto;">
     <div style="font-family:var(--fm);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--warm);margin-bottom:20px;">
       {essay.data.series} · {essay.data.readingTime}
     </div>
@@ -29,8 +28,7 @@ const { Content } = await essay.render();
     )}
   </div>
 
-  <!-- Article body -->
-  <article style="padding:48px 64px;max-width:780px;margin:0 auto;font-family:var(--ff);font-size:18px;line-height:1.8;color:var(--ink);">
+  <article class="r-article-body" style="padding:48px 64px;max-width:780px;margin:0 auto;font-family:var(--ff);font-size:18px;line-height:1.8;color:var(--ink);">
     <style>
       article p { margin-bottom: 1.6em; }
       article em { font-style: italic; }
@@ -39,21 +37,21 @@ const { Content } = await essay.render();
     <Content />
   </article>
 
-  <!-- Back link -->
-  <div style="padding:0 64px 56px;border-bottom:.5px solid var(--rule);max-width:780px;margin:0 auto;">
+  <div class="r-article-back" style="padding:0 64px 56px;border-bottom:.5px solid var(--rule);max-width:780px;margin:0 auto;">
     <a href="/essays" style="font-family:var(--fm);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--g);text-decoration:none;border-bottom:.5px solid var(--g);padding-bottom:2px;">← All essays</a>
   </div>
 
-  <footer style="padding:32px;display:flex;align-items:center;justify-content:space-between;border-top:2px solid var(--g);">
-    <div style="font-family:var(--ff);font-size:14px;letter-spacing:.1em;text-transform:uppercase;">
-      <span style="font-weight:300;">WATCH</span><span style="font-weight:500;color:var(--g);">HAIKUS</span>
+  <footer class="r-footer" style="padding:32px;display:flex;align-items:center;justify-content:space-between;background:var(--g);">
+    <div style="font-family:var(--ff);font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:var(--p);display:flex;align-items:center;gap:10px;">
+      <span style="display:inline-block;width:8px;height:8px;background:#A8C5A0;flex-shrink:0;"></span>
+      <span style="font-weight:300;">WATCH</span><span style="font-weight:500;color:#A8C5A0;">HAIKUS</span>
     </div>
-    <div style="font-family:var(--ff);font-size:14px;font-style:italic;color:var(--mute);">Reading room for watches.</div>
-    <div style="display:flex;gap:24px;">
-      <a href="/essays" style="font-family:var(--fm);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);text-decoration:none;">Essays</a>
-      <a href="/haikus" style="font-family:var(--fm);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);text-decoration:none;">Haikus</a>
-      <a href="/available" style="font-family:var(--fm);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);text-decoration:none;">Available</a>
-      <a href="/about" style="font-family:var(--fm);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);text-decoration:none;">About</a>
+    <div style="font-family:var(--ff);font-size:14px;font-style:italic;color:#6E9178;">Reading room for watches.</div>
+    <div style="display:flex;gap:24px;flex-wrap:wrap;">
+      <a href="/essays" style="font-family:var(--fm);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#6E9178;text-decoration:none;">Essays</a>
+      <a href="/haikus" style="font-family:var(--fm);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#6E9178;text-decoration:none;">Haikus</a>
+      <a href="/available" style="font-family:var(--fm);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#6E9178;text-decoration:none;">Available</a>
+      <a href="/about" style="font-family:var(--fm);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#6E9178;text-decoration:none;">About</a>
     </div>
   </footer>
 

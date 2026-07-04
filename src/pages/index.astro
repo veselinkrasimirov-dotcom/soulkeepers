@@ -21,26 +21,26 @@ function excerpt(body: string) {
   <Header active="The Bench" />
 
   <!-- Dateline -->
-  <div style="border-bottom:1px solid var(--rule);padding:10px 32px;display:flex;align-items:center;justify-content:space-between;border-left:6px solid var(--g);">
+  <div class="r-dateline" style="border-bottom:1px solid var(--rule);padding:10px 32px;display:flex;align-items:center;justify-content:space-between;border-left:6px solid var(--g);">
     <span style="font-family:var(--fm);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);">The Bench — Vol. 01 · № {latestHaikus[0]?.data.number}</span>
     <span style="font-family:var(--fm);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--g);font-weight:500;">{availableWatches.length} watches available · essays ongoing</span>
   </div>
 
   <!-- Haiku Hero -->
   {latestHaikus[0] && (
-    <section style="padding:64px 64px 60px;border-bottom:1px solid var(--rule);">
+    <section class="r-pad-hero" style="padding:64px 64px 60px;border-bottom:1px solid var(--rule);">
       <div style="font-family:var(--fm);font-size:11px;letter-spacing:.16em;color:var(--g);text-transform:uppercase;margin-bottom:28px;font-weight:500;">
         Haiku · {String(latestHaikus[0].data.number).padStart(3,'0')} · {latestHaikus[0].data.watch ?? latestHaikus[0].data.brand}
       </div>
 
       {latestHaikus[0].data.title ? (
         <div style="border-left:6px solid var(--g);padding-left:40px;">
-          <div style="font-family:var(--ff);font-size:44px;font-weight:400;line-height:1.25;color:var(--ink);margin-bottom:20px;">{latestHaikus[0].data.title}</div>
-          <div style="font-family:var(--ff);font-size:19px;font-style:italic;font-weight:300;line-height:1.75;color:var(--mute);margin-bottom:24px;">{excerpt(latestHaikus[0].body)}</div>
+          <div class="r-haiku-title" style="font-family:var(--ff);font-size:44px;font-weight:400;line-height:1.25;color:var(--ink);margin-bottom:20px;">{latestHaikus[0].data.title}</div>
+          <div class="r-haiku-excerpt" style="font-family:var(--ff);font-size:19px;font-style:italic;font-weight:300;line-height:1.75;color:var(--mute);margin-bottom:24px;">{excerpt(latestHaikus[0].body)}</div>
           <a href={`/haikus/${latestHaikus[0].slug}`} style="font-family:var(--fm);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--p);text-decoration:none;background:var(--g);padding:8px 16px;display:inline-block;">Read →</a>
         </div>
       ) : (
-        <div style="font-family:var(--ff);font-size:62px;font-weight:300;font-style:italic;line-height:1.45;color:var(--ink);border-left:6px solid var(--g);padding-left:40px;">
+        <div class="r-haiku-hero" style="font-family:var(--ff);font-size:62px;font-weight:300;font-style:italic;line-height:1.45;color:var(--ink);border-left:6px solid var(--g);padding-left:40px;">
           {latestHaikus[0].body.split('\n').filter((l: string) => l.trim()).map((line: string) => (
             <>{line}<br /></>
           ))}
@@ -55,12 +55,12 @@ function excerpt(body: string) {
 
   <!-- Featured Essay -->
   {featuredEssay && (
-    <section style="padding:44px 32px;border-bottom:1px solid var(--rule);display:grid;grid-template-columns:110px 1fr;align-items:start;">
-      <div style="padding-right:28px;border-right:1px solid var(--rule);">
+    <section class="r-featured r-pad" style="padding:44px 32px;border-bottom:1px solid var(--rule);display:grid;grid-template-columns:110px 1fr;align-items:start;">
+      <div class="r-featured-num" style="padding-right:28px;border-right:1px solid var(--rule);">
         <div style="font-family:var(--fm);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--g);margin-bottom:12px;font-weight:500;">Series {String(featuredEssay.data.seriesNumber).padStart(2,'0')}</div>
         <div style="font-family:var(--ff);font-size:72px;font-weight:300;color:var(--g);line-height:1;">{String(featuredEssay.data.seriesNumber).padStart(2,'0')}</div>
       </div>
-      <div style="padding-left:28px;">
+      <div class="r-featured-body" style="padding-left:28px;">
         <div style="font-family:var(--fm);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--warm);margin-bottom:16px;">Featured Essay — {featuredEssay.data.series}</div>
         <div style="font-family:var(--ff);font-size:30px;font-weight:400;line-height:1.3;color:var(--ink);margin-bottom:16px;">{featuredEssay.data.title}</div>
         <div style="font-family:var(--ff);font-size:18px;font-style:italic;font-weight:300;color:var(--mute);line-height:1.7;margin-bottom:22px;">{featuredEssay.data.subtitle}</div>
@@ -70,13 +70,12 @@ function excerpt(body: string) {
   )}
 
   <!-- Haiku Row -->
-  <div style="display:grid;grid-template-columns:repeat(3,1fr);border-bottom:1px solid var(--rule);">
+  <div class="r-grid-3" style="display:grid;grid-template-columns:repeat(3,1fr);border-bottom:1px solid var(--rule);">
     {latestHaikus.map((haiku, i) => (
       <a href={`/haikus/${haiku.slug}`} style={`text-decoration:none;padding:36px 28px;display:block;${i < 2 ? 'border-right:1px solid var(--rule);' : ''}`}>
         <div style="font-family:var(--fm);font-size:11px;letter-spacing:.12em;color:var(--p);background:var(--g);display:inline-block;padding:3px 8px;text-transform:uppercase;margin-bottom:18px;">
           Haiku · {String(haiku.data.number).padStart(3,'0')}
         </div>
-
         {haiku.data.title ? (
           <>
             <div style="font-family:var(--ff);font-size:20px;font-weight:400;line-height:1.3;color:var(--ink);margin-bottom:10px;">{haiku.data.title}</div>
@@ -89,7 +88,6 @@ function excerpt(body: string) {
             ))}
           </div>
         )}
-
         <div style="margin-top:16px;font-family:var(--fm);font-size:11px;letter-spacing:.06em;color:var(--mute);">
           — {haiku.data.brand}{haiku.data.watch ? ` / ${haiku.data.watch}` : ''}
         </div>
@@ -98,11 +96,11 @@ function excerpt(body: string) {
   </div>
 
   <!-- Available Watches -->
-  <section style="padding:44px 32px;border-bottom:1px solid var(--rule);">
+  <section class="r-pad" style="padding:44px 32px;border-bottom:1px solid var(--rule);">
     <div style="font-family:var(--fm);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--p);background:var(--g);display:inline-block;padding:5px 12px;margin-bottom:24px;">
       Available — Three Watches
     </div>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;">
+    <div class="r-grid-3" style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;">
       {availableWatches.map(watch => (
         <div style="border:1px solid var(--rule);border-top:4px solid var(--g);overflow:hidden;">
           <div style="height:160px;background:var(--p2);border-bottom:1px solid var(--rule);display:flex;align-items:center;justify-content:center;">
@@ -126,22 +124,22 @@ function excerpt(body: string) {
   </section>
 
   <!-- Creed -->
-  <section style="padding:72px 64px;background:var(--g);">
-    <div style="font-family:var(--ff);font-size:54px;font-style:italic;font-weight:300;line-height:1.45;color:var(--p);">
+  <section style="background:var(--g);">
+    <div class="r-creed" style="padding:72px 64px;font-family:var(--ff);font-size:54px;font-style:italic;font-weight:300;line-height:1.45;color:var(--p);">
       We don't describe watches.<br>
       We <em style="font-style:normal;color:#A8C5A0;font-weight:400;">argue</em> them.
     </div>
-    <div style="margin-top:28px;font-family:var(--fm);font-size:11px;letter-spacing:.14em;color:#6E9178;text-transform:uppercase;">Vienna — content leads, selling lags</div>
+    <div style="padding:0 64px 40px;font-family:var(--fm);font-size:11px;letter-spacing:.14em;color:#6E9178;text-transform:uppercase;">Vienna — content leads, selling lags</div>
   </section>
 
   <!-- Footer -->
-  <footer style="padding:32px;display:flex;align-items:center;justify-content:space-between;background:var(--g);">
+  <footer class="r-footer" style="padding:32px;display:flex;align-items:center;justify-content:space-between;background:var(--g);">
     <div style="font-family:var(--ff);font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:var(--p);display:flex;align-items:center;gap:10px;">
       <span style="display:inline-block;width:8px;height:8px;background:#A8C5A0;flex-shrink:0;"></span>
       <span style="font-weight:300;">WATCH</span><span style="font-weight:500;color:#A8C5A0;">HAIKUS</span>
     </div>
     <div style="font-family:var(--ff);font-size:14px;font-style:italic;color:#6E9178;">Reading room for watches.</div>
-    <div style="display:flex;gap:24px;">
+    <div style="display:flex;gap:24px;flex-wrap:wrap;">
       <a href="/essays" style="font-family:var(--fm);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#6E9178;text-decoration:none;">Essays</a>
       <a href="/haikus" style="font-family:var(--fm);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#6E9178;text-decoration:none;">Haikus</a>
       <a href="/available" style="font-family:var(--fm);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#6E9178;text-decoration:none;">Available</a>
