@@ -1,0 +1,27 @@
+---
+import site from '../data/site.json';
+---
+<footer class="r-footer" style="background:var(--g);">
+  <a href="/" style="text-decoration:none;font-family:var(--ff);font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:var(--p);display:flex;align-items:center;gap:10px;">
+    <span style="display:inline-block;width:7px;height:7px;background:var(--gs);flex-shrink:0;"></span>
+    <span style="font-weight:300;">WATCH</span><span style="font-weight:500;color:var(--gs);">HAIKUS</span>
+  </a>
+
+  <span style="font-family:var(--ff);font-size:14px;font-style:italic;color:var(--gd);">{site.bio}</span>
+
+  <div style="display:flex;align-items:center;gap:24px;flex-wrap:wrap;">
+    {site.instagram && (
+      <a href={`https://instagram.com/${site.instagram}`} target="_blank" rel="noopener" style="font-family:var(--fm);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--gd);text-decoration:none;">Instagram</a>
+    )}
+    {site.x && (
+      <a href={`https://x.com/${site.x}`} target="_blank" rel="noopener" style="font-family:var(--fm);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--gd);text-decoration:none;">X</a>
+    )}
+    {site.email && (
+      <a href={`mailto:${site.email}`} style="font-family:var(--fm);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--gd);text-decoration:none;">Contact</a>
+    )}
+    <span style="width:1px;height:12px;background:rgba(255,255,255,.12);display:inline-block;"></span>
+    <a href="/essays" style="font-family:var(--fm);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--gd);text-decoration:none;">Essays</a>
+    <a href="/haikus" style="font-family:var(--fm);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--gd);text-decoration:none;">Haikus</a>
+    <a href="/about" style="font-family:var(--fm);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--gd);text-decoration:none;">About</a>
+  </div>
+</footer>

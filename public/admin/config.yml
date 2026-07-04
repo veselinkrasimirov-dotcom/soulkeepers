@@ -6,6 +6,18 @@ media_folder: public/images
 public_folder: /images
 
 collections:
+  - name: settings
+    label: Site Settings
+    files:
+      - name: contact
+        label: Contact & Social
+        file: src/data/site.json
+        fields:
+          - { label: Site Bio, name: bio, widget: string, hint: "Short line shown in every footer." }
+          - { label: Instagram handle (without @), name: instagram, widget: string, required: false }
+          - { label: X / Twitter handle (without @), name: x, widget: string, required: false }
+          - { label: Contact email, name: email, widget: string, required: false }
+
   - name: essays
     label: Essays
     folder: src/content/essays

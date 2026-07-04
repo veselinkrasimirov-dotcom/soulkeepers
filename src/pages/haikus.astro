@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
 import { getCollection } from 'astro:content';
 
 const haikus = await getCollection('haikus');
@@ -55,17 +56,6 @@ function excerpt(body: string) {
     ))}
   </div>
 
-  <footer class="r-footer" style="background:var(--g);">
-    <a href="/" style="text-decoration:none;font-family:var(--ff);font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:var(--p);display:flex;align-items:center;gap:10px;">
-      <span style="display:inline-block;width:7px;height:7px;background:var(--gs);flex-shrink:0;"></span>
-      <span style="font-weight:300;">WATCH</span><span style="font-weight:500;color:var(--gs);">HAIKUS</span>
-    </a>
-    <span style="font-family:var(--ff);font-size:14px;font-style:italic;color:var(--gd);">Reading room for watches.</span>
-    <nav style="display:flex;gap:28px;flex-wrap:wrap;">
-      <a href="/essays" style="font-family:var(--fm);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--gd);text-decoration:none;">Essays</a>
-      <a href="/haikus" style="font-family:var(--fm);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--gd);text-decoration:none;">Haikus</a>
-      <a href="/about" style="font-family:var(--fm);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--gd);text-decoration:none;">About</a>
-    </nav>
-  </footer>
+  <Footer />
 
 </BaseLayout>
