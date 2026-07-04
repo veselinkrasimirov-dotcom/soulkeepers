@@ -31,14 +31,14 @@ const { title = 'Watch Haikus', description = 'Reading room for watches.' } = As
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; overflow-x: hidden; }
+    html { scroll-behavior: smooth; overflow-x: clip; }
     body {
       background: var(--p);
       color: var(--ink);
       font-family: var(--ff);
       font-size: 18px;
       line-height: 1.6;
-      overflow-x: hidden;
+      overflow-x: clip;
     }
     a { color: inherit; }
 
