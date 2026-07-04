@@ -18,7 +18,7 @@ const { Content } = await haiku.render();
 
   <Header active="Haikus" />
 
-  <div class="r-article-header" style="padding:80px 64px 64px;border-bottom:1px solid var(--rule);max-width:820px;margin:0 auto;">
+  <div class="r-article-header" style="border-bottom:1px solid var(--rule);max-width:820px;margin:0 auto;">
     <div class="r-label" style="margin-bottom:20px;color:var(--gd);">
       Haiku · {String(haiku.data.number).padStart(3,'0')}
     </div>
@@ -39,7 +39,7 @@ const { Content } = await haiku.render();
   </div>
 
   {haiku.data.image && (
-    <div style="max-width:820px;margin:0 auto;padding:0 64px;">
+    <div class="r-article-img" style="max-width:820px;margin:0 auto;">
       <figure style="margin:0;border-top:1px solid var(--rule);">
         <img
           src={haiku.data.image}
@@ -54,7 +54,7 @@ const { Content } = await haiku.render();
   )}
 
   {haiku.data.title && (
-    <article class="r-article-body" style="padding:56px 64px 48px;max-width:820px;margin:0 auto;font-family:var(--ff);font-size:19px;line-height:1.85;color:var(--ink);">
+    <article class="r-article-body" style="max-width:820px;margin:0 auto;font-family:var(--ff);color:var(--ink);">
       <style>
         article p { margin-bottom: 1.7em; }
         article p:first-child::first-letter { font-size: 3.2em; font-weight: 300; float: left; line-height: .85; margin-right: .08em; margin-top: .04em; color: var(--g); font-style: italic; }
@@ -65,7 +65,7 @@ const { Content } = await haiku.render();
     </article>
   )}
 
-  <div class="r-article-back" style="padding:0 64px 56px;max-width:820px;margin:0 auto;border-bottom:1px solid var(--rule);">
+  <div class="r-article-back" style="max-width:820px;margin:0 auto;border-bottom:1px solid var(--rule);">
     <a href="/haikus" class="r-label" style="text-decoration:none;color:var(--g);">All haikus</a>
   </div>
 
