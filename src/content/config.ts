@@ -23,6 +23,8 @@ const haikus = defineCollection({
     watch: z.string().optional(),
     brand: z.string(),
     date: z.string(),
+    image: z.string().optional(),
+    imageAlt: z.string().optional(),
   }),
 });
 

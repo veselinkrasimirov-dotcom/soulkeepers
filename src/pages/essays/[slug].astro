@@ -29,6 +29,21 @@ const { Content } = await essay.render();
     )}
   </div>
 
+  {essay.data.image && (
+    <div style="max-width:820px;margin:0 auto;padding:0 64px;">
+      <figure style="margin:0;border-top:1px solid var(--rule);">
+        <img
+          src={essay.data.image}
+          alt={essay.data.imageAlt ?? essay.data.title}
+          style="width:100%;display:block;aspect-ratio:16/9;object-fit:cover;"
+        />
+        {essay.data.imageAlt && (
+          <figcaption style="font-family:var(--fm);font-size:10px;letter-spacing:.08em;color:var(--mute);padding:10px 0 0;text-transform:uppercase;">{essay.data.imageAlt}</figcaption>
+        )}
+      </figure>
+    </div>
+  )}
+
   <article class="r-article-body" style="padding:56px 64px 48px;max-width:820px;margin:0 auto;font-family:var(--ff);font-size:19px;line-height:1.85;color:var(--ink);">
     <style>
       article p { margin-bottom: 1.7em; }
