@@ -1,6 +1,6 @@
-name = "watch-haikus1"
+name = "soulkeepers"
 compatibility_date = "2026-07-04"
-workers_dev = true
+workers_dev = false
 
 [assets]
 directory = "./dist"
