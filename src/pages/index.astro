@@ -21,14 +21,14 @@ function excerpt(body: string) {
   <Header active="The Bench" />
 
   <!-- Editorial strip -->
-  <div class="r-dateline" style="border-bottom:1px solid var(--rule);padding:0 48px;height:34px;">
+  <div class="r-dateline" style="border-bottom:1px solid var(--rule);">
     <span style="font-family:var(--fm);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);">The Bench — Vol. 01 · № {latestHaikus[0]?.data.number}</span>
     <span style="font-family:var(--fm);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--gd);">{availableWatches.length} watches available · essays ongoing</span>
   </div>
 
   <!-- Hero -->
   {latestHaikus[0] && (
-    <section class="r-pad-hero" style="padding:88px 64px 80px;border-bottom:1px solid var(--rule);position:relative;overflow:hidden;">
+    <section class="r-pad-hero" style="border-bottom:1px solid var(--rule);position:relative;overflow:hidden;">
       <!-- Background watermark number -->
       <div aria-hidden="true" style="position:absolute;right:-20px;top:50%;transform:translateY(-50%);font-family:var(--ff);font-size:320px;font-weight:300;color:var(--g);opacity:.05;line-height:1;pointer-events:none;user-select:none;letter-spacing:-.02em;">
         {String(latestHaikus[0].data.number).padStart(3,'0')}
@@ -63,7 +63,7 @@ function excerpt(body: string) {
 
   <!-- Featured Essay — dark section -->
   {featuredEssay && (
-    <section class="r-dark-section" style="background:var(--g);padding:72px 64px;position:relative;overflow:hidden;">
+    <section class="r-dark-section" style="background:var(--g);position:relative;overflow:hidden;">
       <div aria-hidden="true" style="position:absolute;right:48px;bottom:-32px;font-family:var(--ff);font-size:260px;font-weight:300;color:#fff;opacity:.04;line-height:1;pointer-events:none;letter-spacing:-.02em;">
         {String(featuredEssay.data.seriesNumber).padStart(2,'0')}
       </div>
@@ -105,7 +105,7 @@ function excerpt(body: string) {
 
   <!-- Available watches -->
   {availableWatches.length > 0 && (
-    <section class="r-pad" style="padding:60px 64px;border-bottom:1px solid var(--rule);">
+    <section class="r-pad" style="padding-top:60px;padding-bottom:60px;border-bottom:1px solid var(--rule);">
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:40px;">
         <div class="r-label">Available now</div>
         <a href="/available" style="font-family:var(--fm);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);text-decoration:none;display:flex;align-items:center;gap:8px;">View all <span>→</span></a>
@@ -137,15 +137,15 @@ function excerpt(body: string) {
   <!-- Creed -->
   <section style="background:var(--ink);position:relative;overflow:hidden;">
     <div aria-hidden="true" style="position:absolute;right:48px;top:50%;transform:translateY(-50%);font-family:var(--fm);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#fff;opacity:.06;writing-mode:vertical-rl;letter-spacing:.3em;">WATCH HAIKUS · VIENNA</div>
-    <div class="r-creed" style="padding:96px 64px 80px;font-family:var(--ff);font-size:56px;font-style:italic;font-weight:300;line-height:1.35;color:var(--p);max-width:880px;">
+    <div class="r-creed" style="font-family:var(--ff);font-size:56px;font-style:italic;font-weight:300;line-height:1.35;color:var(--p);max-width:880px;">
       We don't describe watches.<br>
       We <em style="font-style:normal;color:var(--gs);font-weight:400;">argue</em> them.
     </div>
-    <div style="padding:0 64px 48px;font-family:var(--fm);font-size:10px;letter-spacing:.18em;color:#3a4a3e;text-transform:uppercase;">Vienna — content leads, selling lags</div>
+    <div class="r-pad" style="padding-bottom:48px;font-family:var(--fm);font-size:10px;letter-spacing:.18em;color:#3a4a3e;text-transform:uppercase;">Vienna — content leads, selling lags</div>
   </section>
 
   <!-- Footer -->
-  <footer class="r-footer" style="padding:36px 48px;background:var(--g);">
+  <footer class="r-footer" style="background:var(--g);">
     <a href="/" style="text-decoration:none;font-family:var(--ff);font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:var(--p);display:flex;align-items:center;gap:10px;">
       <span style="display:inline-block;width:7px;height:7px;background:var(--gs);flex-shrink:0;"></span>
       <span style="font-weight:300;">WATCH</span><span style="font-weight:500;color:var(--gs);">HAIKUS</span>

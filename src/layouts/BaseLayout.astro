@@ -31,13 +31,14 @@ const { title = 'Watch Haikus', description = 'Reading room for watches.' } = As
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
     body {
       background: var(--p);
       color: var(--ink);
       font-family: var(--ff);
       font-size: 18px;
       line-height: 1.6;
+      overflow-x: hidden;
     }
     a { color: inherit; }
 
@@ -91,14 +92,19 @@ const { title = 'Watch Haikus', description = 'Reading room for watches.' } = As
       flex-shrink: 0;
     }
 
-    /* ── Layout classes ── */
-    .r-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); }
-    .r-grid-essay { display: grid; grid-template-columns: 80px 1fr; align-items: start; }
-    .r-featured { display: grid; grid-template-columns: 110px 1fr; align-items: start; }
-    .r-footer { display: flex; align-items: center; justify-content: space-between; }
-    .r-dateline { display: flex; align-items: center; justify-content: space-between; }
+    /* ── Layout classes (desktop defaults) ── */
+    .r-grid-3      { display: grid; grid-template-columns: repeat(3, 1fr); }
+    .r-grid-essay  { display: grid; grid-template-columns: 80px 1fr; align-items: start; }
+    .r-featured    { display: grid; grid-template-columns: 110px 1fr; align-items: start; }
+    .r-footer      { display: flex; align-items: center; justify-content: space-between; padding: 36px 48px; }
+    .r-dateline    { display: flex; align-items: center; justify-content: space-between; padding: 0 48px; height: 34px; }
+    .r-pad         { padding: 0 48px; }
+    .r-pad-hero    { padding: 88px 64px 80px; }
+    .r-section-hero { padding: 72px 64px 64px; }
+    .r-dark-section { padding: 72px 64px; }
+    .r-creed       { padding: 96px 64px 80px; }
 
-    /* ── Article layout (desktop defaults — overridden at mobile) ── */
+    /* ── Article layout ── */
     .r-article-header { padding: 80px 64px 64px; }
     .r-article-body   { padding: 56px 64px 48px; font-size: 19px; line-height: 1.85; }
     .r-article-back   { padding: 0 64px 56px; }
@@ -110,10 +116,14 @@ const { title = 'Watch Haikus', description = 'Reading room for watches.' } = As
       .site-header .logo { font-size: 13px; }
       .site-header nav a { padding: 0 8px; font-size: 10px; height: 50px; }
 
-      .r-pad { padding: 36px 24px; }
+      .r-pad { padding: 28px 24px; }
       .r-pad-hero { padding: 44px 24px 40px; }
+      .r-section-hero { padding: 40px 24px 36px; }
+      .r-dark-section { padding: 48px 24px; }
+      .r-creed { padding: 56px 24px 48px; }
 
-      .r-dateline { flex-direction: column; align-items: flex-start; gap: 4px; padding: 10px 24px; }
+      .r-dateline { flex-direction: column; align-items: flex-start; gap: 4px; padding: 10px 24px; height: auto; }
+      .r-footer { padding: 32px 24px; }
 
       .r-hero-title { font-size: 52px !important; }
       .r-haiku-hero { font-size: 36px !important; padding-left: 20px !important; }

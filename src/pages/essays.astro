@@ -10,18 +10,18 @@ const sorted = essays.sort((a, b) => new Date(b.data.date).getTime() - new Date(
 
   <Header active="Essays" />
 
-  <div class="r-dateline" style="border-bottom:1px solid var(--rule);padding:0 48px;height:34px;">
+  <div class="r-dateline" style="border-bottom:1px solid var(--rule);">
     <span style="font-family:var(--fm);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);">Essays — {sorted.length} pieces across {[...new Set(sorted.map(e => e.data.series))].length} series</span>
   </div>
 
-  <section class="r-section-hero" style="padding:72px 64px 64px;border-bottom:1px solid var(--rule);">
+  <section class="r-section-hero" style="border-bottom:1px solid var(--rule);">
     <div class="r-label" style="margin-bottom:28px;color:var(--gd);">Long form</div>
     <div class="r-section-title" style="font-family:var(--ff);font-size:52px;font-weight:300;font-style:italic;line-height:1.35;color:var(--ink);max-width:640px;">
       We don't describe watches.<br>We <em style="font-style:normal;color:var(--g);font-weight:400;">argue</em> them.
     </div>
   </section>
 
-  <div class="r-pad" style="padding:0 48px;">
+  <div class="r-pad">
     {sorted.map((essay, i) => (
       <a href={`/essays/${essay.slug}`} class="r-grid-essay r-card" style="text-decoration:none;border-bottom:1px solid var(--rule);padding:36px 0;">
         <div class="r-essay-num" style="padding-right:28px;border-right:1px solid var(--rule);">
@@ -43,7 +43,7 @@ const sorted = essays.sort((a, b) => new Date(b.data.date).getTime() - new Date(
     ))}
   </div>
 
-  <footer class="r-footer" style="padding:36px 48px;background:var(--g);">
+  <footer class="r-footer" style="background:var(--g);">
     <a href="/" style="text-decoration:none;font-family:var(--ff);font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:var(--p);display:flex;align-items:center;gap:10px;">
       <span style="display:inline-block;width:7px;height:7px;background:var(--gs);flex-shrink:0;"></span>
       <span style="font-weight:300;">WATCH</span><span style="font-weight:500;color:var(--gs);">HAIKUS</span>
