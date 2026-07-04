@@ -64,7 +64,7 @@ function excerpt(body: string) {
 
   <!-- Featured Essay — dark section -->
   {featuredEssay && (
-    <section class="r-dark-section" style="background:var(--g);position:relative;overflow:hidden;">
+    <a href={`/essays/${featuredEssay.slug}`} class="r-dark-section" style="display:block;text-decoration:none;background:var(--g);position:relative;overflow:hidden;">
       <div aria-hidden="true" style="position:absolute;right:48px;bottom:-32px;font-family:var(--ff);font-size:260px;font-weight:300;color:#fff;opacity:.04;line-height:1;pointer-events:none;letter-spacing:-.02em;">
         {String(featuredEssay.data.seriesNumber).padStart(2,'0')}
       </div>
@@ -73,8 +73,8 @@ function excerpt(body: string) {
       </div>
       <h2 style="font-family:var(--ff);font-size:46px;font-weight:400;line-height:1.2;color:var(--p);margin-bottom:18px;max-width:760px;letter-spacing:-.01em;">{featuredEssay.data.title}</h2>
       <p style="font-family:var(--ff);font-size:18px;font-style:italic;font-weight:300;color:var(--gs);line-height:1.7;margin-bottom:40px;max-width:560px;">{featuredEssay.data.subtitle}</p>
-      <a href={`/essays/${featuredEssay.slug}`} class="r-btn-inv r-btn">Read essay</a>
-    </section>
+      <span class="r-btn-inv r-btn">Read essay</span>
+    </a>
   )}
 
   <!-- Three haiku cards -->
