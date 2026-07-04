@@ -20,131 +20,143 @@ function excerpt(body: string) {
 
   <Header active="The Bench" />
 
-  <!-- Dateline -->
-  <div class="r-dateline" style="border-bottom:1px solid var(--rule);padding:10px 32px;border-left:6px solid var(--g);">
-    <span style="font-family:var(--fm);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);">The Bench — Vol. 01 · № {latestHaikus[0]?.data.number}</span>
-    <span style="font-family:var(--fm);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--g);font-weight:500;">{availableWatches.length} watches available · essays ongoing</span>
+  <!-- Editorial strip -->
+  <div class="r-dateline" style="border-bottom:1px solid var(--rule);padding:0 48px;height:34px;">
+    <span style="font-family:var(--fm);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);">The Bench — Vol. 01 · № {latestHaikus[0]?.data.number}</span>
+    <span style="font-family:var(--fm);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--gd);">{availableWatches.length} watches available · essays ongoing</span>
   </div>
 
-  <!-- Haiku Hero -->
+  <!-- Hero -->
   {latestHaikus[0] && (
-    <section class="r-pad-hero" style="padding:64px 64px 60px;border-bottom:1px solid var(--rule);">
-      <div style="font-family:var(--fm);font-size:11px;letter-spacing:.16em;color:var(--g);text-transform:uppercase;margin-bottom:28px;font-weight:500;">
+    <section class="r-pad-hero" style="padding:88px 64px 80px;border-bottom:1px solid var(--rule);position:relative;overflow:hidden;">
+      <!-- Background watermark number -->
+      <div aria-hidden="true" style="position:absolute;right:-20px;top:50%;transform:translateY(-50%);font-family:var(--ff);font-size:320px;font-weight:300;color:var(--g);opacity:.05;line-height:1;pointer-events:none;user-select:none;letter-spacing:-.02em;">
+        {String(latestHaikus[0].data.number).padStart(3,'0')}
+      </div>
+
+      <div class="r-label" style="margin-bottom:44px;color:var(--gd);">
         Haiku · {String(latestHaikus[0].data.number).padStart(3,'0')} · {latestHaikus[0].data.watch ?? latestHaikus[0].data.brand}
       </div>
 
       {latestHaikus[0].data.title ? (
-        <div style="border-left:6px solid var(--g);padding-left:40px;">
-          <div class="r-haiku-title" style="font-family:var(--ff);font-size:44px;font-weight:400;line-height:1.25;color:var(--ink);margin-bottom:20px;">{latestHaikus[0].data.title}</div>
-          <div class="r-haiku-excerpt" style="font-family:var(--ff);font-size:19px;font-style:italic;font-weight:300;line-height:1.75;color:var(--mute);margin-bottom:24px;">{excerpt(latestHaikus[0].body)}</div>
-          <a href={`/haikus/${latestHaikus[0].slug}`} style="font-family:var(--fm);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--p);text-decoration:none;background:var(--g);padding:8px 16px;display:inline-block;">Read →</a>
+        <div style="max-width:860px;">
+          <h1 class="r-haiku-title" style="font-family:var(--ff);font-size:88px;font-weight:400;font-style:italic;line-height:1.05;color:var(--ink);margin-bottom:32px;letter-spacing:-.02em;">{latestHaikus[0].data.title}</h1>
+          <p class="r-haiku-excerpt" style="font-family:var(--ff);font-size:20px;font-weight:300;line-height:1.75;color:var(--mute);margin-bottom:40px;max-width:600px;">{excerpt(latestHaikus[0].body)}</p>
+          <a href={`/haikus/${latestHaikus[0].slug}`} class="r-btn">Read</a>
         </div>
       ) : (
-        <div class="r-haiku-hero" style="font-family:var(--ff);font-size:62px;font-weight:300;font-style:italic;line-height:1.45;color:var(--ink);border-left:6px solid var(--g);padding-left:40px;">
-          {latestHaikus[0].body.split('\n').filter((l: string) => l.trim()).map((line: string) => (
-            <>{line}<br /></>
-          ))}
+        <div style="max-width:860px;">
+          <div class="r-haiku-hero" style="font-family:var(--ff);font-size:72px;font-weight:300;font-style:italic;line-height:1.35;color:var(--ink);border-left:3px solid var(--g);padding-left:40px;">
+            {latestHaikus[0].body.split('\n').filter((l: string) => l.trim()).map((line: string) => (
+              <>{line}<br /></>
+            ))}
+          </div>
         </div>
       )}
 
-      <div style="margin-top:24px;font-family:var(--fm);font-size:11px;letter-spacing:.07em;color:var(--mute);text-transform:uppercase;padding-left:46px;">
-        — {latestHaikus[0].data.brand}
+      <div style="margin-top:48px;font-family:var(--fm);font-size:10px;letter-spacing:.1em;color:var(--mute);text-transform:uppercase;display:flex;align-items:center;gap:12px;">
+        <span style="display:inline-block;width:20px;height:1px;background:var(--mute);flex-shrink:0;"></span>
+        {latestHaikus[0].data.brand}
       </div>
     </section>
   )}
 
-  <!-- Featured Essay -->
+  <!-- Featured Essay — dark section -->
   {featuredEssay && (
-    <section class="r-featured r-pad" style="padding:44px 32px;border-bottom:1px solid var(--rule);">
-      <div class="r-featured-num" style="padding-right:28px;border-right:1px solid var(--rule);">
-        <div style="font-family:var(--fm);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--g);margin-bottom:12px;font-weight:500;">Series {String(featuredEssay.data.seriesNumber).padStart(2,'0')}</div>
-        <div style="font-family:var(--ff);font-size:72px;font-weight:300;color:var(--g);line-height:1;">{String(featuredEssay.data.seriesNumber).padStart(2,'0')}</div>
+    <section class="r-dark-section" style="background:var(--g);padding:72px 64px;position:relative;overflow:hidden;">
+      <div aria-hidden="true" style="position:absolute;right:48px;bottom:-32px;font-family:var(--ff);font-size:260px;font-weight:300;color:#fff;opacity:.04;line-height:1;pointer-events:none;letter-spacing:-.02em;">
+        {String(featuredEssay.data.seriesNumber).padStart(2,'0')}
       </div>
-      <div class="r-featured-body" style="padding-left:28px;">
-        <div style="font-family:var(--fm);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--warm);margin-bottom:16px;">Featured Essay — {featuredEssay.data.series}</div>
-        <div style="font-family:var(--ff);font-size:30px;font-weight:400;line-height:1.3;color:var(--ink);margin-bottom:16px;">{featuredEssay.data.title}</div>
-        <div style="font-family:var(--ff);font-size:18px;font-style:italic;font-weight:300;color:var(--mute);line-height:1.7;margin-bottom:22px;">{featuredEssay.data.subtitle}</div>
-        <a href={`/essays/${featuredEssay.slug}`} style="font-family:var(--fm);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--p);text-decoration:none;background:var(--g);padding:8px 16px;display:inline-block;">Read essay →</a>
+      <div class="r-label" style="margin-bottom:24px;color:var(--gd);">
+        Featured Essay · {featuredEssay.data.series}
       </div>
+      <h2 style="font-family:var(--ff);font-size:46px;font-weight:400;line-height:1.2;color:var(--p);margin-bottom:18px;max-width:760px;letter-spacing:-.01em;">{featuredEssay.data.title}</h2>
+      <p style="font-family:var(--ff);font-size:18px;font-style:italic;font-weight:300;color:var(--gs);line-height:1.7;margin-bottom:40px;max-width:560px;">{featuredEssay.data.subtitle}</p>
+      <a href={`/essays/${featuredEssay.slug}`} class="r-btn-inv r-btn">Read essay</a>
     </section>
   )}
 
-  <!-- Haiku Row -->
+  <!-- Three haiku cards -->
   <div class="r-grid-3" style="border-bottom:1px solid var(--rule);">
     {latestHaikus.map((haiku, i) => (
-      <a href={`/haikus/${haiku.slug}`} style={`text-decoration:none;padding:36px 28px;display:block;${i < 2 ? 'border-right:1px solid var(--rule);' : ''}`}>
-        <div style="font-family:var(--fm);font-size:11px;letter-spacing:.12em;color:var(--p);background:var(--g);display:inline-block;padding:3px 8px;text-transform:uppercase;margin-bottom:18px;">
-          Haiku · {String(haiku.data.number).padStart(3,'0')}
+      <a href={`/haikus/${haiku.slug}`} class="r-card" style={`text-decoration:none;padding:44px 36px;display:block;${i < 2 ? 'border-right:1px solid var(--rule);' : ''}`}>
+        <div class="r-label" style="margin-bottom:22px;color:var(--gd);">
+          {String(haiku.data.number).padStart(3,'0')}
         </div>
         {haiku.data.title ? (
           <>
-            <div style="font-family:var(--ff);font-size:20px;font-weight:400;line-height:1.3;color:var(--ink);margin-bottom:10px;">{haiku.data.title}</div>
-            <div style="font-family:var(--ff);font-size:15px;font-style:italic;font-weight:300;line-height:1.65;color:var(--mute);">{excerpt(haiku.body).slice(0, 100)}…</div>
+            <div style="font-family:var(--ff);font-size:22px;font-weight:400;line-height:1.3;color:var(--ink);margin-bottom:14px;">{haiku.data.title}</div>
+            <div style="font-family:var(--ff);font-size:15px;font-style:italic;font-weight:300;line-height:1.7;color:var(--mute);">{excerpt(haiku.body).slice(0,120)}…</div>
           </>
         ) : (
-          <div style="font-family:var(--ff);font-size:18px;font-style:italic;font-weight:300;line-height:1.75;color:var(--ink);">
+          <div style="font-family:var(--ff);font-size:19px;font-style:italic;font-weight:300;line-height:1.8;color:var(--ink);">
             {haiku.body.split('\n').filter((l: string) => l.trim()).map((line: string) => (
               <>{line}<br /></>
             ))}
           </div>
         )}
-        <div style="margin-top:16px;font-family:var(--fm);font-size:11px;letter-spacing:.06em;color:var(--mute);">
-          — {haiku.data.brand}{haiku.data.watch ? ` / ${haiku.data.watch}` : ''}
+        <div style="margin-top:22px;font-family:var(--fm);font-size:10px;letter-spacing:.08em;color:var(--mute);display:flex;align-items:center;gap:10px;">
+          <span style="display:inline-block;width:14px;height:1px;background:var(--mute);flex-shrink:0;"></span>
+          {haiku.data.brand}{haiku.data.watch ? ` · ${haiku.data.watch}` : ''}
         </div>
       </a>
     ))}
   </div>
 
-  <!-- Available Watches -->
-  <section class="r-pad" style="padding:44px 32px;border-bottom:1px solid var(--rule);">
-    <div style="font-family:var(--fm);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--p);background:var(--g);display:inline-block;padding:5px 12px;margin-bottom:24px;">
-      Available — Three Watches
-    </div>
-    <div class="r-grid-3" style="gap:12px;">
-      {availableWatches.map(watch => (
-        <div style="border:1px solid var(--rule);border-top:4px solid var(--g);overflow:hidden;">
-          <div style="height:160px;background:var(--p2);border-bottom:1px solid var(--rule);display:flex;align-items:center;justify-content:center;">
-            <svg width="72" height="72" viewBox="0 0 72 72" fill="none">
-              <circle cx="36" cy="36" r="26" stroke="var(--g)" stroke-width="1"/>
-              <circle cx="36" cy="36" r="21" stroke="var(--rule)" stroke-width=".5"/>
-              <line x1="36" y1="36" x2="36" y2="19" stroke="var(--g)" stroke-width="2"/>
-              <line x1="36" y1="36" x2="47" y2="39" stroke="var(--ink)" stroke-width="1"/>
-              <circle cx="36" cy="36" r="2.5" fill="var(--g)"/>
-            </svg>
-          </div>
-          <div style="padding:20px;">
-            <div style="font-family:var(--fm);font-size:11px;letter-spacing:.08em;color:var(--g);text-transform:uppercase;margin-bottom:6px;font-weight:500;">{watch.data.brand} · {watch.data.reference}</div>
-            <div style="font-family:var(--ff);font-size:20px;font-weight:400;color:var(--ink);margin-bottom:10px;line-height:1.2;">{watch.data.model}</div>
-            <div style="font-family:var(--fm);font-size:11px;letter-spacing:.04em;color:var(--mute);border-top:1px solid var(--rule);padding-top:12px;line-height:2;">{watch.data.spec}</div>
-            <a href={`/available/${watch.slug}`} style="display:inline-block;margin-top:14px;font-family:var(--fm);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--p);text-decoration:none;background:var(--g);padding:7px 14px;">Enquire →</a>
-          </div>
-        </div>
-      ))}
-    </div>
-  </section>
+  <!-- Available watches -->
+  {availableWatches.length > 0 && (
+    <section class="r-pad" style="padding:60px 64px;border-bottom:1px solid var(--rule);">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:40px;">
+        <div class="r-label">Available now</div>
+        <a href="/available" style="font-family:var(--fm);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);text-decoration:none;display:flex;align-items:center;gap:8px;">View all <span>→</span></a>
+      </div>
+      <div class="r-grid-3" style="gap:1px;background:var(--rule);">
+        {availableWatches.map(watch => (
+          <a href={`/available/${watch.slug}`} class="r-card" style="text-decoration:none;background:var(--p);display:block;padding:32px;">
+            <div style="height:160px;display:flex;align-items:center;justify-content:center;margin-bottom:24px;">
+              <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+                <circle cx="40" cy="40" r="30" stroke="var(--g)" stroke-width=".75" opacity=".6"/>
+                <circle cx="40" cy="40" r="23" stroke="var(--rule)" stroke-width=".5"/>
+                <line x1="40" y1="40" x2="40" y2="20" stroke="var(--g)" stroke-width="1.5"/>
+                <line x1="40" y1="40" x2="52" y2="44" stroke="var(--ink)" stroke-width=".75" opacity=".6"/>
+                <circle cx="40" cy="40" r="3" fill="var(--g)" opacity=".8"/>
+              </svg>
+            </div>
+            <div class="r-label" style="margin-bottom:10px;color:var(--gd);">{watch.data.brand}</div>
+            <div style="font-family:var(--ff);font-size:22px;font-weight:400;color:var(--ink);margin-bottom:8px;line-height:1.2;">{watch.data.model}</div>
+            <div style="font-family:var(--fm);font-size:10px;letter-spacing:.04em;color:var(--mute);line-height:2.2;">{watch.data.spec}</div>
+            <div style="margin-top:20px;border-top:1px solid var(--rule);padding-top:16px;">
+              <span style="font-family:var(--fm);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--g);">Enquire →</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
+  )}
 
   <!-- Creed -->
-  <section style="background:var(--g);">
-    <div class="r-creed" style="padding:72px 64px;font-family:var(--ff);font-size:54px;font-style:italic;font-weight:300;line-height:1.45;color:var(--p);">
+  <section style="background:var(--ink);position:relative;overflow:hidden;">
+    <div aria-hidden="true" style="position:absolute;right:48px;top:50%;transform:translateY(-50%);font-family:var(--fm);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#fff;opacity:.06;writing-mode:vertical-rl;letter-spacing:.3em;">WATCH HAIKUS · VIENNA</div>
+    <div class="r-creed" style="padding:96px 64px 80px;font-family:var(--ff);font-size:56px;font-style:italic;font-weight:300;line-height:1.35;color:var(--p);max-width:880px;">
       We don't describe watches.<br>
-      We <em style="font-style:normal;color:#A8C5A0;font-weight:400;">argue</em> them.
+      We <em style="font-style:normal;color:var(--gs);font-weight:400;">argue</em> them.
     </div>
-    <div style="padding:0 64px 40px;font-family:var(--fm);font-size:11px;letter-spacing:.14em;color:#6E9178;text-transform:uppercase;">Vienna — content leads, selling lags</div>
+    <div style="padding:0 64px 48px;font-family:var(--fm);font-size:10px;letter-spacing:.18em;color:#3a4a3e;text-transform:uppercase;">Vienna — content leads, selling lags</div>
   </section>
 
   <!-- Footer -->
-  <footer class="r-footer" style="padding:32px;background:var(--g);">
-    <div style="font-family:var(--ff);font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:var(--p);display:flex;align-items:center;gap:10px;">
-      <span style="display:inline-block;width:8px;height:8px;background:#A8C5A0;flex-shrink:0;"></span>
-      <span style="font-weight:300;">WATCH</span><span style="font-weight:500;color:#A8C5A0;">HAIKUS</span>
-    </div>
-    <div style="font-family:var(--ff);font-size:14px;font-style:italic;color:#6E9178;">Reading room for watches.</div>
-    <div style="display:flex;gap:24px;flex-wrap:wrap;">
-      <a href="/essays" style="font-family:var(--fm);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#6E9178;text-decoration:none;">Essays</a>
-      <a href="/haikus" style="font-family:var(--fm);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#6E9178;text-decoration:none;">Haikus</a>
-      <a href="/available" style="font-family:var(--fm);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#6E9178;text-decoration:none;">Available</a>
-      <a href="/about" style="font-family:var(--fm);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#6E9178;text-decoration:none;">About</a>
-    </div>
+  <footer class="r-footer" style="padding:36px 48px;background:var(--g);">
+    <a href="/" style="text-decoration:none;font-family:var(--ff);font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:var(--p);display:flex;align-items:center;gap:10px;">
+      <span style="display:inline-block;width:7px;height:7px;background:var(--gs);flex-shrink:0;"></span>
+      <span style="font-weight:300;">WATCH</span><span style="font-weight:500;color:var(--gs);">HAIKUS</span>
+    </a>
+    <span style="font-family:var(--ff);font-size:14px;font-style:italic;color:var(--gd);">Reading room for watches.</span>
+    <nav style="display:flex;gap:28px;flex-wrap:wrap;">
+      <a href="/essays" style="font-family:var(--fm);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--gd);text-decoration:none;">Essays</a>
+      <a href="/haikus" style="font-family:var(--fm);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--gd);text-decoration:none;">Haikus</a>
+      <a href="/available" style="font-family:var(--fm);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--gd);text-decoration:none;">Available</a>
+      <a href="/about" style="font-family:var(--fm);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--gd);text-decoration:none;">About</a>
+    </nav>
   </footer>
 
 </BaseLayout>

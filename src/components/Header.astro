@@ -12,16 +12,19 @@ const nav = [
   { label: 'About', href: '/about' },
 ];
 ---
-<header style="position:sticky;top:0;z-index:100;background:var(--p);border-top:5px solid var(--g);border-bottom:1px solid var(--g);padding:0 32px;display:flex;align-items:center;justify-content:space-between;height:54px;">
-  <a href="/" style="text-decoration:none;font-family:var(--ff);font-size:15px;letter-spacing:.1em;text-transform:uppercase;display:flex;align-items:center;gap:10px;">
-    <span style="display:inline-block;width:8px;height:8px;background:var(--g);flex-shrink:0;"></span>
-    <span style="font-weight:300;">WATCH</span><span style="font-weight:500;color:var(--g);">HAIKUS</span>
+<header class="site-header" style="position:sticky;top:0;z-index:100;background:var(--p);border-top:3px solid var(--g);border-bottom:1px solid var(--rule);padding:0 48px;display:flex;align-items:center;justify-content:space-between;height:52px;">
+  <a href="/" class="logo" style="text-decoration:none;font-family:var(--ff);font-size:14px;letter-spacing:.08em;text-transform:uppercase;display:flex;align-items:center;gap:10px;white-space:nowrap;">
+    <span style="display:inline-block;width:7px;height:7px;background:var(--g);flex-shrink:0;"></span>
+    <span style="font-weight:300;color:var(--ink);">WATCH</span><span style="font-weight:500;color:var(--g);">HAIKUS</span>
   </a>
   <nav>
-    <ul style="display:flex;list-style:none;">
+    <ul style="display:flex;list-style:none;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;">
       {nav.map(item => (
         <li>
-          <a href={item.href} style={`font-family:var(--fm);font-size:11px;text-transform:uppercase;letter-spacing:.07em;text-decoration:none;padding:0 12px;height:54px;display:flex;align-items:center;border-bottom:2px solid transparent;${active === item.label ? 'color:var(--g);border-bottom-color:var(--g);' : 'color:var(--mute);'}`}>
+          <a
+            href={item.href}
+            style={`font-family:var(--fm);font-size:10px;text-transform:uppercase;letter-spacing:.1em;text-decoration:none;padding:0 14px;height:52px;display:flex;align-items:center;white-space:nowrap;border-bottom:2px solid transparent;${active === item.label ? 'color:var(--g);border-bottom-color:var(--g);' : 'color:var(--mute);'}`}
+          >
             {item.label}
           </a>
         </li>
