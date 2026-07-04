@@ -4,6 +4,8 @@ title: "The Watch They Didn't See"
 watch: "Millenary"
 brand: "Audemars Piguet"
 date: "2026-06-21"
+image: "/images/ap-millenary-052.jpg"
+imageAlt: "Audemars Piguet Millenary on wrist, olive dial with Arabic numerals"
 ---
 
 Audemars Piguet has only ever needed one watch, so it never learned what to do with the others.

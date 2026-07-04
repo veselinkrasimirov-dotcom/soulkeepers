@@ -45,6 +45,8 @@ collections:
       - { label: Watch, name: watch, widget: string }
       - { label: Brand, name: brand, widget: string }
       - { label: Date, name: date, widget: date, format: YYYY-MM-DD }
+      - { label: Cover Image, name: image, widget: image, required: false }
+      - { label: Image Alt Text, name: imageAlt, widget: string, required: false }
       - { label: Verse, name: body, widget: markdown }
 
   - name: watches
