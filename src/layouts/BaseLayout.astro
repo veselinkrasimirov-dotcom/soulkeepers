@@ -1,17 +1,50 @@
 ---
+import site from '../data/site.json';
+
 interface Props {
   title?: string;
   description?: string;
+  image?: string;
 }
-const { title = 'Watch Haikus', description = 'Reading room for watches.' } = Astro.props;
+const {
+  title = 'Watch Haikus',
+  description = site.bio || 'A reading room for watches. Vienna.',
+  image,
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, 'https://watchhaikus.com');
+const ogImage = image
+  ? new URL(image, 'https://watchhaikus.com').href
+  : 'https://watchhaikus.com/og-default.jpg';
+const pageTitle = title === 'Watch Haikus' ? 'Watch Haikus' : `${title} — Watch Haikus`;
 ---
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{title} — Watch Haikus</title>
+  <title>{pageTitle}</title>
   <meta name="description" content={description}>
+  <link rel="canonical" href={canonicalURL}>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Watch Haikus">
+  <meta property="og:title" content={pageTitle}>
+  <meta property="og:description" content={description}>
+  <meta property="og:url" content={canonicalURL}>
+  <meta property="og:image" content={ogImage}>
+
+  <!-- Twitter / X card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content={site.x ? `@${site.x}` : '@watchhaikus'}>
+  <meta name="twitter:title" content={pageTitle}>
+  <meta name="twitter:description" content={description}>
+  <meta name="twitter:image" content={ogImage}>
+
+  <!-- Google Search Console verification — paste the content value from GSC here -->
+  <!-- <meta name="google-site-verification" content="PASTE_YOUR_CODE_HERE"> -->
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,ital,wght@9..144,0,300;9..144,0,400;9..144,0,500;9..144,1,300;9..144,1,400;9..144,1,500&family=Spline+Sans+Mono:wght@400;500&display=swap" rel="stylesheet">
