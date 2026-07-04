@@ -16,8 +16,10 @@ const nav = [
     <span style="display:inline-block;width:7px;height:7px;background:var(--g);flex-shrink:0;"></span>
     <span style="font-weight:300;color:var(--ink);">WATCH</span><span style="font-weight:500;color:var(--g);">HAIKUS</span>
   </a>
-  <nav>
-    <ul style="display:flex;list-style:none;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;">
+
+  <!-- Desktop nav -->
+  <nav class="desktop-nav">
+    <ul style="display:flex;list-style:none;">
       {nav.map(item => (
         <li>
           <a
@@ -30,4 +32,128 @@ const nav = [
       ))}
     </ul>
   </nav>
+
+  <!-- Hamburger button (mobile only) -->
+  <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
 </header>
+
+<!-- Mobile menu overlay -->
+<div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+  <nav>
+    {nav.map(item => (
+      <a
+        href={item.href}
+        class={active === item.label ? 'mobile-nav-active' : ''}
+      >
+        {item.label}
+      </a>
+    ))}
+  </nav>
+</div>
+
+<style>
+  .desktop-nav { display: flex; }
+  .hamburger { display: none; }
+  .mobile-menu { display: none; }
+
+  @media (max-width: 768px) {
+    .site-header { padding: 0 20px; height: 50px; }
+
+    .desktop-nav { display: none; }
+
+    .hamburger {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      background: none;
+      border: none;
+      padding: 8px;
+      cursor: pointer;
+      width: 36px;
+      height: 36px;
+    }
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 1.5px;
+      background: var(--ink);
+      transition: opacity .2s ease, transform .2s ease;
+      transform-origin: center;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    .mobile-menu {
+      position: fixed;
+      top: 53px;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: var(--p);
+      z-index: 99;
+      padding: 48px 28px;
+      border-top: 1px solid var(--rule);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .2s ease;
+    }
+    .mobile-menu.open {
+      display: block;
+      opacity: 1;
+      pointer-events: all;
+    }
+    .mobile-menu nav {
+      display: flex;
+      flex-direction: column;
+    }
+    .mobile-menu nav a {
+      font-family: var(--ff);
+      font-size: 40px;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--ink);
+      text-decoration: none;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--rule);
+      line-height: 1;
+      transition: color .15s ease;
+    }
+    .mobile-menu nav a:last-child { border-bottom: none; }
+    .mobile-menu nav a.mobile-nav-active { color: var(--g); }
+    .mobile-menu nav a:hover { color: var(--g); }
+  }
+</style>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  hamburger?.addEventListener('click', () => {
+    const isOpen = hamburger.classList.toggle('open');
+    hamburger.setAttribute('aria-expanded', String(isOpen));
+    if (isOpen) {
+      mobileMenu?.classList.add('open');
+      mobileMenu?.removeAttribute('aria-hidden');
+      document.body.style.overflow = 'hidden';
+    } else {
+      mobileMenu?.classList.remove('open');
+      mobileMenu?.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+  });
+
+  // Close on nav link click
+  mobileMenu?.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      hamburger?.classList.remove('open');
+      mobileMenu.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+</script>

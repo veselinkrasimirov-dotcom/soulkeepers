@@ -28,11 +28,10 @@ function excerpt(body: string) {
   </section>
 
   <div class="r-pad">
-    {sorted.map((haiku) => (
+    {sorted.map((haiku, i) => (
       <a href={`/haikus/${haiku.slug}`} class="r-grid-essay r-card" style="text-decoration:none;border-bottom:1px solid var(--rule);padding:36px 0;">
-        <div class="r-essay-num" style="padding-right:28px;border-right:1px solid var(--rule);">
-          <div style="font-family:var(--fm);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--gd);margin-bottom:10px;">№</div>
-          <div style="font-family:var(--ff);font-size:52px;font-weight:300;color:var(--g);line-height:1;">{String(haiku.data.number).padStart(3,'0')}</div>
+        <div class="r-essay-num" style="padding-right:28px;">
+          <div style="font-family:var(--ff);font-size:52px;font-weight:300;color:var(--rule);line-height:1;">{i + 1}</div>
         </div>
         <div class="r-essay-body" style="padding-left:32px;">
           <div style="font-family:var(--fm);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--warm);margin-bottom:14px;display:flex;align-items:center;gap:10px;">
