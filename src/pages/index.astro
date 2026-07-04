@@ -21,7 +21,7 @@ function excerpt(body: string) {
   <Header active="The Bench" />
 
   <!-- Dateline -->
-  <div class="r-dateline" style="border-bottom:1px solid var(--rule);padding:10px 32px;display:flex;align-items:center;justify-content:space-between;border-left:6px solid var(--g);">
+  <div class="r-dateline" style="border-bottom:1px solid var(--rule);padding:10px 32px;border-left:6px solid var(--g);">
     <span style="font-family:var(--fm);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);">The Bench — Vol. 01 · № {latestHaikus[0]?.data.number}</span>
     <span style="font-family:var(--fm);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--g);font-weight:500;">{availableWatches.length} watches available · essays ongoing</span>
   </div>
@@ -55,7 +55,7 @@ function excerpt(body: string) {
 
   <!-- Featured Essay -->
   {featuredEssay && (
-    <section class="r-featured r-pad" style="padding:44px 32px;border-bottom:1px solid var(--rule);display:grid;grid-template-columns:110px 1fr;align-items:start;">
+    <section class="r-featured r-pad" style="padding:44px 32px;border-bottom:1px solid var(--rule);">
       <div class="r-featured-num" style="padding-right:28px;border-right:1px solid var(--rule);">
         <div style="font-family:var(--fm);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--g);margin-bottom:12px;font-weight:500;">Series {String(featuredEssay.data.seriesNumber).padStart(2,'0')}</div>
         <div style="font-family:var(--ff);font-size:72px;font-weight:300;color:var(--g);line-height:1;">{String(featuredEssay.data.seriesNumber).padStart(2,'0')}</div>
@@ -70,7 +70,7 @@ function excerpt(body: string) {
   )}
 
   <!-- Haiku Row -->
-  <div class="r-grid-3" style="display:grid;grid-template-columns:repeat(3,1fr);border-bottom:1px solid var(--rule);">
+  <div class="r-grid-3" style="border-bottom:1px solid var(--rule);">
     {latestHaikus.map((haiku, i) => (
       <a href={`/haikus/${haiku.slug}`} style={`text-decoration:none;padding:36px 28px;display:block;${i < 2 ? 'border-right:1px solid var(--rule);' : ''}`}>
         <div style="font-family:var(--fm);font-size:11px;letter-spacing:.12em;color:var(--p);background:var(--g);display:inline-block;padding:3px 8px;text-transform:uppercase;margin-bottom:18px;">
@@ -100,7 +100,7 @@ function excerpt(body: string) {
     <div style="font-family:var(--fm);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--p);background:var(--g);display:inline-block;padding:5px 12px;margin-bottom:24px;">
       Available — Three Watches
     </div>
-    <div class="r-grid-3" style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;">
+    <div class="r-grid-3" style="gap:12px;">
       {availableWatches.map(watch => (
         <div style="border:1px solid var(--rule);border-top:4px solid var(--g);overflow:hidden;">
           <div style="height:160px;background:var(--p2);border-bottom:1px solid var(--rule);display:flex;align-items:center;justify-content:center;">
@@ -133,7 +133,7 @@ function excerpt(body: string) {
   </section>
 
   <!-- Footer -->
-  <footer class="r-footer" style="padding:32px;display:flex;align-items:center;justify-content:space-between;background:var(--g);">
+  <footer class="r-footer" style="padding:32px;background:var(--g);">
     <div style="font-family:var(--ff);font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:var(--p);display:flex;align-items:center;gap:10px;">
       <span style="display:inline-block;width:8px;height:8px;background:#A8C5A0;flex-shrink:0;"></span>
       <span style="font-weight:300;">WATCH</span><span style="font-weight:500;color:#A8C5A0;">HAIKUS</span>

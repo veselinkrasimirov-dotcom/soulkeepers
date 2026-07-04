@@ -15,7 +15,7 @@ function excerpt(body: string) {
 
   <Header active="Haikus" />
 
-  <div class="r-dateline" style="border-bottom:1px solid var(--rule);padding:10px 32px;display:flex;align-items:center;border-left:6px solid var(--g);">
+  <div class="r-dateline" style="border-bottom:1px solid var(--rule);padding:10px 32px;border-left:6px solid var(--g);">
     <span style="font-family:var(--fm);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);">Haikus — {sorted.length} observations</span>
   </div>
 
@@ -27,7 +27,7 @@ function excerpt(body: string) {
 
   <div class="r-pad" style="padding:0 32px;">
     {sorted.map((haiku) => (
-      <a href={`/haikus/${haiku.slug}`} class="r-grid-essay" style="text-decoration:none;display:grid;grid-template-columns:80px 1fr;align-items:start;border-bottom:1px solid var(--rule);padding:32px 0;gap:0;">
+      <a href={`/haikus/${haiku.slug}`} class="r-grid-essay" style="text-decoration:none;border-bottom:1px solid var(--rule);padding:32px 0;">
         <div class="r-essay-num" style="padding-right:24px;border-right:1px solid var(--rule);">
           <div style="font-family:var(--fm);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--g);font-weight:500;margin-bottom:8px;">№</div>
           <div style="font-family:var(--ff);font-size:48px;font-weight:300;color:var(--g);line-height:1;">{String(haiku.data.number).padStart(3,'0')}</div>
@@ -53,7 +53,7 @@ function excerpt(body: string) {
     ))}
   </div>
 
-  <footer class="r-footer" style="padding:32px;display:flex;align-items:center;justify-content:space-between;background:var(--g);">
+  <footer class="r-footer" style="padding:32px;background:var(--g);">
     <div style="font-family:var(--ff);font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:var(--p);display:flex;align-items:center;gap:10px;">
       <span style="display:inline-block;width:8px;height:8px;background:#A8C5A0;flex-shrink:0;"></span>
       <span style="font-weight:300;">WATCH</span><span style="font-weight:500;color:#A8C5A0;">HAIKUS</span>

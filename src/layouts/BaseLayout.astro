@@ -37,6 +37,66 @@ const { title = 'Watch Haikus', description = 'Reading room for watches.' } = As
       line-height: 1.6;
     }
     a { color: inherit; }
+
+    /* ── Layout classes (desktop defaults, overridden at mobile) ── */
+
+    .r-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); }
+    .r-grid-essay { display: grid; grid-template-columns: 80px 1fr; align-items: start; }
+    .r-featured { display: grid; grid-template-columns: 110px 1fr; align-items: start; }
+    .r-footer { display: flex; align-items: center; justify-content: space-between; }
+    .r-dateline { display: flex; align-items: center; justify-content: space-between; }
+
+    /* ── Mobile overrides ── */
+    @media (max-width: 768px) {
+
+      /* Header */
+      .site-header { padding: 0 16px; height: 48px; }
+      .site-header .logo { font-size: 13px; }
+      .site-header nav a { padding: 0 8px; font-size: 10px; height: 48px; }
+
+      /* Section padding */
+      .r-pad { padding: 32px 20px; }
+      .r-pad-hero { padding: 36px 20px 32px; }
+
+      /* Dateline */
+      .r-dateline { flex-direction: column; align-items: flex-start; gap: 4px; padding: 10px 20px; }
+
+      /* Haiku hero text */
+      .r-haiku-hero { font-size: 32px; padding-left: 20px; }
+      .r-haiku-title { font-size: 28px; }
+      .r-haiku-excerpt { font-size: 16px; }
+
+      /* 3-col grids → 1 col */
+      .r-grid-3 { grid-template-columns: 1fr; }
+      .r-grid-3 > * { border-right: none; border-bottom: 1px solid var(--rule); }
+      .r-grid-3 > *:last-child { border-bottom: none; }
+
+      /* Essay / haiku list grid → 1 col */
+      .r-grid-essay { grid-template-columns: 1fr; }
+      .r-grid-essay .r-essay-num { display: none; }
+      .r-grid-essay .r-essay-body { padding-left: 0; }
+
+      /* Featured essay */
+      .r-featured { grid-template-columns: 1fr; }
+      .r-featured-num { display: none; }
+      .r-featured-body { padding-left: 0; }
+
+      /* Creed text */
+      .r-creed { font-size: 28px; padding: 40px 20px; }
+
+      /* Footer */
+      .r-footer { flex-direction: column; align-items: flex-start; gap: 20px; padding: 28px 20px; }
+
+      /* Hero section for essays/haikus index */
+      .r-section-hero { padding: 32px 20px 28px; }
+      .r-section-hero div { font-size: 28px; }
+
+      /* Article pages */
+      .r-article-header { padding: 32px 20px 28px; }
+      .r-article-header h1 { font-size: 28px; }
+      .r-article-body { padding: 28px 20px; }
+      .r-article-back { padding: 0 20px 36px; }
+    }
   </style>
 </head>
 <body>

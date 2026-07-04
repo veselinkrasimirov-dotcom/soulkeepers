@@ -10,7 +10,7 @@ const sorted = essays.sort((a, b) => new Date(b.data.date).getTime() - new Date(
 
   <Header active="Essays" />
 
-  <div class="r-dateline" style="border-bottom:1px solid var(--rule);padding:10px 32px;display:flex;align-items:center;border-left:6px solid var(--g);">
+  <div class="r-dateline" style="border-bottom:1px solid var(--rule);padding:10px 32px;border-left:6px solid var(--g);">
     <span style="font-family:var(--fm);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);">Essays — {sorted.length} pieces across {[...new Set(sorted.map(e => e.data.series))].length} series</span>
   </div>
 
@@ -22,7 +22,7 @@ const sorted = essays.sort((a, b) => new Date(b.data.date).getTime() - new Date(
 
   <div class="r-pad" style="padding:44px 32px;">
     {sorted.map((essay, i) => (
-      <a href={`/essays/${essay.slug}`} class="r-grid-essay" style="text-decoration:none;display:grid;grid-template-columns:110px 1fr;align-items:start;border-bottom:1px solid var(--rule);padding:32px 0;gap:0;">
+      <a href={`/essays/${essay.slug}`} class="r-grid-essay" style="text-decoration:none;border-bottom:1px solid var(--rule);padding:32px 0;">
         <div class="r-essay-num" style="padding-right:28px;border-right:1px solid var(--rule);">
           <div style="font-family:var(--fm);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--g);margin-bottom:8px;font-weight:500;">Series {String(essay.data.seriesNumber).padStart(2,'0')}</div>
           <div style="font-family:var(--ff);font-size:48px;font-weight:300;color:var(--g);line-height:1;">{String(i + 1).padStart(2,'0')}</div>
@@ -36,7 +36,7 @@ const sorted = essays.sort((a, b) => new Date(b.data.date).getTime() - new Date(
     ))}
   </div>
 
-  <footer class="r-footer" style="padding:32px;display:flex;align-items:center;justify-content:space-between;background:var(--g);">
+  <footer class="r-footer" style="padding:32px;background:var(--g);">
     <div style="font-family:var(--ff);font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:var(--p);display:flex;align-items:center;gap:10px;">
       <span style="display:inline-block;width:8px;height:8px;background:#A8C5A0;flex-shrink:0;"></span>
       <span style="font-weight:300;">WATCH</span><span style="font-weight:500;color:#A8C5A0;">HAIKUS</span>
