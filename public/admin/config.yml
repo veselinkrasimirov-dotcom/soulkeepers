@@ -1,6 +1,9 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: veselinkrasimirov-dotcom/soulkeepers
   branch: main
+  base_url: https://watchhaikus.com
+  auth_endpoint: /api/auth
 
 media_folder: public/images
 public_folder: /images
@@ -28,9 +31,9 @@ collections:
       - { label: Subtitle, name: subtitle, widget: string, required: false }
       - { label: Series, name: series, widget: string }
       - { label: Series Number, name: seriesNumber, widget: number }
-      - { label: Date, name: date, widget: date, format: YYYY-MM-DD }
-      - { label: Reading Time, name: readingTime, widget: string, required: false }
-      - { label: Featured, name: featured, widget: boolean, default: false }
+      - { label: Date, name: date, widget: datetime, format: YYYY-MM-DD, date_format: DD MMM YYYY, time_format: false }
+      - { label: Reading Time, name: readingTime, widget: string, required: false, hint: "e.g. 9 min" }
+      - { label: Featured on homepage, name: featured, widget: boolean, default: false }
       - { label: Cover Image, name: image, widget: image, required: false }
       - { label: Image Alt Text, name: imageAlt, widget: string, required: false }
       - { label: Body, name: body, widget: markdown }
@@ -41,13 +44,14 @@ collections:
     create: true
     slug: "{{number}}-{{brand}}"
     fields:
-      - { label: Number, name: number, widget: number }
-      - { label: Watch, name: watch, widget: string }
+      - { label: "Number", name: number, widget: number, hint: "Sequential haiku number." }
+      - { label: Title, name: title, widget: string, required: false, hint: "Leave blank for verse-only haikus." }
+      - { label: Watch, name: watch, widget: string, required: false }
       - { label: Brand, name: brand, widget: string }
-      - { label: Date, name: date, widget: date, format: YYYY-MM-DD }
+      - { label: Date, name: date, widget: datetime, format: YYYY-MM-DD, date_format: DD MMM YYYY, time_format: false }
       - { label: Cover Image, name: image, widget: image, required: false }
       - { label: Image Alt Text, name: imageAlt, widget: string, required: false }
-      - { label: Verse, name: body, widget: markdown }
+      - { label: Body, name: body, widget: markdown }
 
   - name: watches
     label: Available Watches
@@ -68,4 +72,3 @@ collections:
       - { label: Image Alt Text, name: imageAlt, widget: string, required: false }
       - { label: Related Essay (slug), name: relatedEssay, widget: string, required: false }
       - { label: Description, name: body, widget: markdown }
-      

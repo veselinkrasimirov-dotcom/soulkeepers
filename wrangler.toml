@@ -1,6 +1,11 @@
 name = "soulkeepers"
 compatibility_date = "2026-07-04"
 workers_dev = false
+main = "src/worker.js"
 
 [assets]
 directory = "./dist"
+binding = "ASSETS"
+
+[vars]
+GITHUB_CLIENT_ID = "Ov23li2eSJr3onGnqTVU"
